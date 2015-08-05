@@ -2,7 +2,7 @@
 /**
  * @package	Pesapal for HikaShop Joomla!
  * @version	1.0
- * @author	twitter.com/happiexy
+ * @author	twitter.com/patric_mutwiri
  * @copyright	(C) 2010-2014 GBC SOFTWARE. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -15,17 +15,18 @@ class plgHikashoppaymentPesapal extends hikashopPaymentPlugin
 	var $multiple = true; 
 	var $name = 'Pesapal'; 
 	var $pluginConfig = array(
-		'secret' => array("Consumer Key",'input'), //User's secret on the payment platform
-		'keyx' => array("Consumer Secret",'input'), //User's key on the payment platform
+		'key' => array("Consumer Key",'input'), //User's secret on the payment platform
+		'secret' => array("Consumer Secret",'input'), //User's key on the payment platform
 		//'iframelink' => array("Iframe Link",'input'), //User's key on the payment platform
-		'pesapal_link'=> array("Use https://www.pesapal.com/API/PostPesapalDirectOrderV4 for live",'input'), //http://demo.pesapal.com/api/PostPesapalDirectOrderV4 demo
+		'pesapal_link'=> array("Use https://www.pesapal.com/API/PostPesapalDirectOrderV4 for live (demo: http://demo.pesapal.com/api/PostPesapalDirectOrderV4) |the link that is passed to the iframe pointing to the PesaPal server|",'input'), 
+		//http://demo.pesapal.com/api/PostPesapalDirectOrderV4 demo
 		'notification' => array('ALLOW_NOTIFICATIONS_FROM_X', 'boolean','0'), 
-		'payment_url' => array("Payment URL",'input'), 
+		'payment_url' => array("Payment URL | Callback",'input'), 
 		'debug' => array('DEBUG', 'boolean','0'), 
-		'cancel_url' => array('Cancel Url','input'),
+		'cancel_url' => array('Cancel Url | index.php?option=com_hikashop&ctrl=order&task=cancel_order','input'),
 		'return_url_gateway' => array('RETURN_URL_DEFINE', 'html',''),
-		'return_url' => array('Return Url', 'input'), 
-		'notify_url' => array('Notification Url','input'),
+		'return_url' => array('Return Url (This is the full url pointing to the page the iframe redirects to after processing the order on pesapal.com) | index.php?option=com_hikashop&ctrl=checkout&task=after_end', 'input'), 
+		'notify_url' => array('Notification Url | index.php?option=com_hikashop&ctrl=checkout&task=notify&amp;notif_payment=Pesapal&tmpl=component','input'),
 		'invalid_status' => array('INVALID_STATUS', 'orderstatus'),
 		'verified_status' => array('VERIFIED_STATUS', 'orderstatus') 
 		);
@@ -48,7 +49,7 @@ class plgHikashoppaymentPesapal extends hikashopPaymentPlugin
 			$this->app->enqueueMessage('You have to configure a secret key for the Pesapal plugin payment first : check your plugin\'s parameters, on your website backend','error');
 			return false;
 		}
-		elseif (empty($this->payment_params->keyx))
+		elseif (empty($this->payment_params->key))
 		{
 			$this->app->enqueueMessage('You have to configure a plugin key for the Pesapal plugin payment first : check your plugin\'s parameters, on your website backend','error');
 			return false;
@@ -159,7 +160,7 @@ class plgHikashoppaymentPesapal extends hikashopPaymentPlugin
 			return false;
 		$this->loadOrderData($dbOrder);
 
-		$hash = $this->pesapal_signature($this->payment_params->keyx,$vars,false,true);
+		$hash = $this->pesapal_signature($this->payment_params->key,$vars,false,true);
 		if($this->payment_params->debug) //Debug mode activated or not
 		{
 			echo print_r($vars,true)."\n\n\n";
