@@ -6,12 +6,10 @@
  * @copyright	(C) 2010-2014 GBC SOFTWARE. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
-//defined('_JEXEC') or die('Restricted access');
-?>
-<?php
 // vim: foldmethod=marker
+
 /* Generic exception class
-*/
+ */
 if(!class_exists("OAuthException") ) {
 	class OAuthException extends Exception {
 	  // pass
@@ -24,13 +22,13 @@ if(!class_exists("OAuthConsumer") ) {
 	  public $secret;
 	
 	  function __construct($key, $secret, $callback_url=NULL) {
-		$this->keyx = $key;
+		$this->key = $key;
 		$this->secret = $secret;
 		$this->callback_url = $callback_url;
 	  }
 	
 	  function __toString() {
-		return "OAuthConsumer[key=$this->keyx,secret=$this->secret]";
+		return "OAuthConsumer[key=$this->key,secret=$this->secret]";
 	  }
 	}
 }
@@ -46,7 +44,7 @@ if(!class_exists("OAuthToken") ) {
 	   * secret = the token secret
 	   */
 	  function __construct($key, $secret) {
-		$this->keyx = $key;
+		$this->key = $key;
 		$this->secret = $secret;
 	  }
 	
@@ -56,7 +54,7 @@ if(!class_exists("OAuthToken") ) {
 	   */
 	  function to_string() {
 		return "oauth_token=" .
-			   OAuthUtil::urlencode_rfc3986($this->keyx) .
+			   OAuthUtil::urlencode_rfc3986($this->key) .
 			   "&oauth_token_secret=" .
 			   OAuthUtil::urlencode_rfc3986($this->secret);
 	  }
@@ -267,9 +265,9 @@ if(!class_exists("OAuthRequest") ) {
 		$defaults = array("oauth_version" => OAuthRequest::$version,
 						  "oauth_nonce" => OAuthRequest::generate_nonce(),
 						  "oauth_timestamp" => OAuthRequest::generate_timestamp(),
-						  "oauth_consumer_key" => $consumer->keyx);
+						  "oauth_consumer_key" => $consumer->key);
 		if ($token)
-		  $defaults['oauth_token'] = $token->keyx;
+		  $defaults['oauth_token'] = $token->key;
 	
 		$parameters = array_merge($defaults, $parameters);
 	
