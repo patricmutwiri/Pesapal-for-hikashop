@@ -1,5 +1,12 @@
 <?php
+/**
+ * @package	Pesapal for HikaShop Joomla!
+ * @version	1.0
+ * @author	twitter.com/patric_mutwiri
+ * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ */
 			require_once("../../../configuration.php");
+//ini_set('display_errors',1);
 			require_once("OAuth.php");
 			$config = new JConfig();
 			$dbx = $config->dbprefix.$config->db;
@@ -11,8 +18,9 @@
 				}
 			$consumer_key = ''; //hardcoded
 			$consumer_secret = ''; //hardcoded
-			$statusrequestAPI = 'http://demo.pesapal.com/api/QueryPaymentStatus';
-			// $statusrequestAPI = 'https://www.pesapal.com/API/QueryPaymentStatus';
+			
+			//$statusrequestAPI = 'http://demo.pesapal.com/api/QueryPaymentStatus';
+			$statusrequestAPI = 'https://www.pesapal.com/API/QueryPaymentStatus';
 			$pesapal_notification_type  = $_GET['pesapal_notification_type'];
 			//$pesapal_notification_type = isset($_GET['pesapal_notification_type']) ? $_GET['pesapal_notification_type'] : "CHANGE";
 			$pesapal_merchant_reference = $_GET['pesapal_merchant_reference'];
