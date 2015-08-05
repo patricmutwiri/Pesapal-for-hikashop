@@ -16,6 +16,9 @@ This plugin helps you make payments using pesapal as a payment method in hikasho
 
  * Include **Key** and **Secret** in the file named **pesapal-ipn-listener** 
 
+ * Also, Change $statusrequestAPI (http://demo.pesapal.com/api/QueryPaymentStatus) to 
+			https://www.pesapal.com/API/QueryPaymentStatus when going live
+
 ----
 
 	$consumer_key = 'ConsumerKey'; 
