@@ -2,7 +2,7 @@
 /**
  * @package	Pesapal for HikaShop Joomla!
  * @version	1.0
- * @author	twitter.com/happiexy
+ * @author	twitter.com/patric_mutwiri
  * @copyright	(C) 2010-2014 GBC SOFTWARE. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -17,8 +17,8 @@ require_once("OAuth.php");
 $user = JFactory::getUser();
 $token = $params = NULL;
 
-$consumer_key = $this->payment_params->secret;
-$consumer_secret = $this->payment_params->keyx;
+$consumer_key = $this->payment_params->key;
+$consumer_secret = $this->payment_params->secret;
 
 $signature_method = new OAuthSignatureMethod_HMAC_SHA1();
 $iframelink = $this->payment_params->pesapal_link;
