@@ -2,7 +2,7 @@
 /**
  * @package	Pesapal for HikaShop Joomla!
  * @version	1.0
- * @author	twitter.com/happiexy
+ * @author	twitter.com/patric_mutwiri
  * @copyright	(C) 2010-2014 GBC SOFTWARE. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
