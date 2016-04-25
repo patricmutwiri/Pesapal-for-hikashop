@@ -21,7 +21,7 @@ class plgHikashoppaymentPesapal extends hikashopPaymentPlugin
 		'pesapal_link'=> array("Use https://www.pesapal.com/API/PostPesapalDirectOrderV4 for live (demo: http://demo.pesapal.com/api/PostPesapalDirectOrderV4) |the link that is passed to the iframe pointing to the PesaPal server|",'input'), 
 		//http://demo.pesapal.com/api/PostPesapalDirectOrderV4 demo
 		'notification' => array('ALLOW_NOTIFICATIONS_FROM_X', 'boolean','0'), 
-		'payment_url' => array("Payment URL | Callback",'input'), 
+		'payment_url' => array("Payment URL | Callback (index.php?option=com_hikashop&ctrl=checkout&task=after_end) ",'input'), 
 		'debug' => array('DEBUG', 'boolean','0'), 
 		'cancel_url' => array('Cancel Url | index.php?option=com_hikashop&ctrl=order&task=cancel_order','input'),
 		'return_url_gateway' => array('RETURN_URL_DEFINE', 'html',''),
