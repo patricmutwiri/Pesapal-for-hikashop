@@ -26,6 +26,11 @@ This plugin helps you make payments using pesapal as a payment method in hikasho
 
 ----
 
+* You can use below for tests. 
+
+**Key** joWKvjo8YFczk01HgZQtZk6u3A2bhfNt
+**Secret** nONPLP+nlfSPMHQPqgdlg7fSWxk=
+
 * Point the ipn listening url to the file in **pesapal's** IPN [settings](http://pesapal.com/merchantipn) . 
 
 
